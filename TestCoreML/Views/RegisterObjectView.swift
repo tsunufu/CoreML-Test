@@ -10,6 +10,8 @@ struct RegisterObjectView: View {
     @State private var selectedImage: UIImage?
     @State private var inputLabel: String = ""
     @State private var imagePickerSourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var showingAlert = false
+    @State private var alertMessage: String = ""
     
     var body: some View {
         NavigationView {
@@ -54,8 +56,8 @@ struct RegisterObjectView: View {
                                 imagePickerSourceType = .camera
                                 showingImagePicker = true
                             } else {
-                                // カメラが利用できない場合の処理
-                                // 例えば、アラートを表示
+                                self.alertMessage = "カメラが利用できません。"
+                                self.showingAlert = true
                                 print("カメラが利用できません。")
                             }
                         },
@@ -65,6 +67,9 @@ struct RegisterObjectView: View {
                         },
                         .cancel()
                     ])
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("エラー"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
                 
                 // 認識結果表示とラベル編集
