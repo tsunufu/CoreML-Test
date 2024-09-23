@@ -15,6 +15,13 @@ class CameraService: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleB
     
     // 認識結果を公開するプロパティ
     @Published var recognizedText: String = "認識中..."
+    @Published var isCorrect: Bool = false
+    
+    // 処理中かどうかを管理するフラグ
+    private var isProcessing = false
+    
+    // 登録済みオブジェクトへの参照
+    var registeredLabels: [String] = []
     
     override init() {
         super.init()
@@ -89,6 +96,13 @@ class CameraService: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleB
             if let topResult = results.first {
                 DispatchQueue.main.async {
                     self.recognizedText = "\(topResult.identifier) \(String(format: "%.2f", topResult.confidence * 100))%"
+                    
+                    // 登録済みラベルと比較
+                    if self.registeredLabels.contains(where: { $0.lowercased() == topResult.identifier.lowercased() }) {
+                        self.isCorrect = true
+                    } else {
+                        self.isCorrect = false
+                    }
                 }
             }
         } else if let error = error {
@@ -116,16 +130,30 @@ class CameraService: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleB
     
     // フレーム毎に呼び出されるデリゲートメソッド
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // CMSampleBufferからCVPixelBufferを取得
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
-        // Visionリクエストハンドラの作成
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .right, options: [:])
-        
-        do {
-            try imageRequestHandler.perform(self.visionRequests)
-        } catch {
-            print("Visionリクエストの実行に失敗: \(error)")
+            if isProcessing {
+                return
+            }
+            isProcessing = true
+            
+            // CMSampleBufferからCVPixelBufferを取得
+            guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+                isProcessing = false
+                return
+            }
+            
+            // Visionリクエストハンドラの作成
+            let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .right, options: [:])
+            
+            do {
+                try imageRequestHandler.perform(self.visionRequests)
+            } catch {
+                print("Visionリクエストの実行に失敗: \(error)")
+            }
+            
+            isProcessing = false
         }
-    }
+        
+        deinit {
+            stopSession()
+        }
 }

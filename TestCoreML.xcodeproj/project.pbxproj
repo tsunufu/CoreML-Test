@@ -14,6 +14,11 @@
 		2AA49DB72CA12D9F00DDE10B /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DB62CA12D9F00DDE10B /* MobileNetV2.mlmodel */; };
 		2AA49DBA2CA12E2400DDE10B /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DB92CA12E2400DDE10B /* CameraService.swift */; };
 		2AA49DBD2CA12EA400DDE10B /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DBC2CA12EA400DDE10B /* CameraPreview.swift */; };
+		2AA49DC02CA137F700DDE10B /* RegisteredObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DBF2CA137F700DDE10B /* RegisteredObject.swift */; };
+		2AA49DC22CA1381900DDE10B /* RegisteredObjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC12CA1381900DDE10B /* RegisteredObjectsViewModel.swift */; };
+		2AA49DC42CA1383800DDE10B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC32CA1383800DDE10B /* ImagePicker.swift */; };
+		2AA49DC62CA1385700DDE10B /* RegisterObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */; };
+		2AA49DC82CA1502400DDE10B /* ImageRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC72CA1502400DDE10B /* ImageRecognitionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,11 @@
 		2AA49DB62CA12D9F00DDE10B /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		2AA49DB92CA12E2400DDE10B /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		2AA49DBC2CA12EA400DDE10B /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		2AA49DBF2CA137F700DDE10B /* RegisteredObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredObject.swift; sourceTree = "<group>"; };
+		2AA49DC12CA1381900DDE10B /* RegisteredObjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredObjectsViewModel.swift; sourceTree = "<group>"; };
+		2AA49DC32CA1383800DDE10B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterObjectView.swift; sourceTree = "<group>"; };
+		2AA49DC72CA1502400DDE10B /* ImageRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,7 @@
 		2AA49DA72CA12A1700DDE10B /* TestCoreML */ = {
 			isa = PBXGroup;
 			children = (
+				2AA49DBE2CA137E100DDE10B /* Models */,
 				2AA49DBB2CA12E8F00DDE10B /* Views */,
 				2AA49DB82CA12E0E00DDE10B /* Utils */,
 				2AA49DA82CA12A1700DDE10B /* TestCoreMLApp.swift */,
@@ -80,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				2AA49DB92CA12E2400DDE10B /* CameraService.swift */,
+				2AA49DC32CA1383800DDE10B /* ImagePicker.swift */,
+				2AA49DC72CA1502400DDE10B /* ImageRecognitionService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -88,8 +101,18 @@
 			isa = PBXGroup;
 			children = (
 				2AA49DBC2CA12EA400DDE10B /* CameraPreview.swift */,
+				2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2AA49DBE2CA137E100DDE10B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2AA49DBF2CA137F700DDE10B /* RegisteredObject.swift */,
+				2AA49DC12CA1381900DDE10B /* RegisteredObjectsViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,10 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AA49DC22CA1381900DDE10B /* RegisteredObjectsViewModel.swift in Sources */,
 				2AA49DBD2CA12EA400DDE10B /* CameraPreview.swift in Sources */,
+				2AA49DC62CA1385700DDE10B /* RegisterObjectView.swift in Sources */,
 				2AA49DBA2CA12E2400DDE10B /* CameraService.swift in Sources */,
 				2AA49DB72CA12D9F00DDE10B /* MobileNetV2.mlmodel in Sources */,
 				2AA49DAB2CA12A1700DDE10B /* ContentView.swift in Sources */,
+				2AA49DC42CA1383800DDE10B /* ImagePicker.swift in Sources */,
+				2AA49DC82CA1502400DDE10B /* ImageRecognitionService.swift in Sources */,
+				2AA49DC02CA137F700DDE10B /* RegisteredObject.swift in Sources */,
 				2AA49DA92CA12A1700DDE10B /* TestCoreMLApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
