@@ -8,16 +8,6 @@ class RegisteredObjectsViewModel: ObservableObject {
     @Published var isLoading: Bool = false // 認識中のフラグ
     @Published var recognitionError: String? = nil // 認識エラー
     
-    init() {
-        loadLabels()
-    }
-    
-    func loadLabels() {
-        // labels.txt の読み込みは不要になったため、この関数は削除または無視可能
-        // 以前の手順を踏まえた実装では、labels.txt を使用しないため、
-        // ここでは使用しません。
-    }
-    
     // 登録済みオブジェクトを追加する関数
     func addObject(image: UIImage, label: String) {
         let newObject = RegisteredObject(image: image, label: label)
@@ -26,8 +16,7 @@ class RegisteredObjectsViewModel: ObservableObject {
         }
     }
     
-    // 画像認識を行い、ラベルを取得する関数
-    func recognizeAndAddObject(image: UIImage, completion: @escaping (Bool) -> Void) {
+    func recognizeImage(_ image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
         isLoading = true
         recognitionError = nil
         
@@ -38,16 +27,15 @@ class RegisteredObjectsViewModel: ObservableObject {
                 case .success(let observations):
                     guard let topResult = observations.first else {
                         self.recognitionError = "ラベルが認識できませんでした。"
-                        completion(false)
+                        completion(.failure(NSError(domain: "RecognitionError", code: -1, userInfo: [NSLocalizedDescriptionKey: "ラベルが認識できませんでした。"])))
                         return
                     }
                     // 上位1件のラベルを使用
                     let recognizedLabel = topResult.identifier
-                    self.addObject(image: image, label: recognizedLabel)
-                    completion(true)
+                    completion(.success(recognizedLabel))
                 case .failure(let error):
                     self.recognitionError = error.localizedDescription
-                    completion(false)
+                    completion(.failure(error))
                 }
             }
         }

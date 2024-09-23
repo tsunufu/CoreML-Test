@@ -6,8 +6,10 @@ struct RegisterObjectView: View {
     @ObservedObject var viewModel: RegisteredObjectsViewModel
     
     @State private var showingImagePicker = false
+    @State private var showingActionSheet = false
     @State private var selectedImage: UIImage?
     @State private var inputLabel: String = ""
+    @State private var imagePickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     
     var body: some View {
         NavigationView {
@@ -35,7 +37,7 @@ struct RegisterObjectView: View {
                 
                 // 画像選択ボタン
                 Button(action: {
-                    showingImagePicker = true
+                    showingActionSheet = true
                 }) {
                     Text("画像を選択")
                         .foregroundColor(.white)
@@ -44,6 +46,25 @@ struct RegisterObjectView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                         .padding([.leading, .trailing])
+                }
+                .actionSheet(isPresented: $showingActionSheet) {
+                    ActionSheet(title: Text("画像の選択"), message: Text("画像を撮影するか、写真ライブラリから選択してください。"), buttons: [
+                        .default(Text("カメラで撮影")) {
+                            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                imagePickerSourceType = .camera
+                                showingImagePicker = true
+                            } else {
+                                // カメラが利用できない場合の処理
+                                // 例えば、アラートを表示
+                                print("カメラが利用できません。")
+                            }
+                        },
+                        .default(Text("写真ライブラリから選択")) {
+                            imagePickerSourceType = .photoLibrary
+                            showingImagePicker = true
+                        },
+                        .cancel()
+                    ])
                 }
                 
                 // 認識結果表示とラベル編集
@@ -78,16 +99,21 @@ struct RegisterObjectView: View {
             .onChange(of: selectedImage) { newImage in
                 if let image = newImage {
                     // 画像が選択されたら認識を開始
-                    viewModel.recognizeAndAddObject(image: image) { success in
-                        if success, let topObject = viewModel.registeredObjects.last {
+                    viewModel.recognizeImage(image) { result in
+                        switch result {
+                        case .success(let label):
                             // 認識結果を入力ラベルに設定
-                            self.inputLabel = topObject.label
+                            self.inputLabel = label
+                        case .failure(let error):
+                            // エラー処理（既に viewModel でエラーが設定されている）
+                            break
                         }
                     }
                 }
             }
             .sheet(isPresented: $showingImagePicker) {
-                ImagePicker(selectedImage: $selectedImage)
+                ImagePicker(selectedImage: $selectedImage, sourceType: imagePickerSourceType)
+                    .edgesIgnoringSafeArea(.all)
             }
         }
     }
