@@ -19,6 +19,8 @@
 		2AA49DC42CA1383800DDE10B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC32CA1383800DDE10B /* ImagePicker.swift */; };
 		2AA49DC62CA1385700DDE10B /* RegisterObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */; };
 		2AA49DC82CA1502400DDE10B /* ImageRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC72CA1502400DDE10B /* ImageRecognitionService.swift */; };
+		2AA49DCA2CA16A7600DDE10B /* RegisteredObjectsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DC92CA16A7600DDE10B /* RegisteredObjectsListView.swift */; };
+		2AA49DCC2CA16AA100DDE10B /* RegisteredObjectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA49DCB2CA16AA100DDE10B /* RegisteredObjectRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		2AA49DC32CA1383800DDE10B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterObjectView.swift; sourceTree = "<group>"; };
 		2AA49DC72CA1502400DDE10B /* ImageRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRecognitionService.swift; sourceTree = "<group>"; };
+		2AA49DC92CA16A7600DDE10B /* RegisteredObjectsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredObjectsListView.swift; sourceTree = "<group>"; };
+		2AA49DCB2CA16AA100DDE10B /* RegisteredObjectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredObjectRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +75,6 @@
 				2AA49DBB2CA12E8F00DDE10B /* Views */,
 				2AA49DB82CA12E0E00DDE10B /* Utils */,
 				2AA49DA82CA12A1700DDE10B /* TestCoreMLApp.swift */,
-				2AA49DAA2CA12A1700DDE10B /* ContentView.swift */,
 				2AA49DAC2CA12A1B00DDE10B /* Assets.xcassets */,
 				2AA49DAE2CA12A1B00DDE10B /* Preview Content */,
 				2AA49DB62CA12D9F00DDE10B /* MobileNetV2.mlmodel */,
@@ -102,6 +105,9 @@
 			children = (
 				2AA49DBC2CA12EA400DDE10B /* CameraPreview.swift */,
 				2AA49DC52CA1385700DDE10B /* RegisterObjectView.swift */,
+				2AA49DC92CA16A7600DDE10B /* RegisteredObjectsListView.swift */,
+				2AA49DAA2CA12A1700DDE10B /* ContentView.swift */,
+				2AA49DCB2CA16AA100DDE10B /* RegisteredObjectRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +200,8 @@
 				2AA49DC42CA1383800DDE10B /* ImagePicker.swift in Sources */,
 				2AA49DC82CA1502400DDE10B /* ImageRecognitionService.swift in Sources */,
 				2AA49DC02CA137F700DDE10B /* RegisteredObject.swift in Sources */,
+				2AA49DCC2CA16AA100DDE10B /* RegisteredObjectRow.swift in Sources */,
+				2AA49DCA2CA16A7600DDE10B /* RegisteredObjectsListView.swift in Sources */,
 				2AA49DA92CA12A1700DDE10B /* TestCoreMLApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
